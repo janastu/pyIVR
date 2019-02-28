@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vxml version = "2.1">
+
+  <meta name="maintainer" content="YOUREMAILADDRESS@HERE.com"/>
+
+  <form>
+    <block>
+      Hello World. This is my first telephone application.
+    </block>
+  </form>
+</vxml>
+

@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+
+<vxml version = "2.1">
+
+  <meta name="maintainer" content="YOUREMAILADDRESS@HERE.com"/>
+
+
+  <form id="guessNumber">
+    <field name="guess"> 
+
+     <grammar type="text/gsl"> [one two three four five six seven eight nine zero
+       dtmf-1 dtmf-2 dtmf-3 dtmf-4 dtmf-5 dtmf-6 dtmf-6 dtmf-7 dtmf-8 dtmf-9 dtmf-0]
+     </grammar>
+
+      <prompt>
+        Guess what the computer is thinking! Pick a number between 0 and 9.
+      </prompt>
+
+      <noinput>
+       <prompt>
+        I did not hear you. Please try again. 
+       </prompt>
+       <reprompt/>
+      </noinput>
+
+      <nomatch>
+       <prompt>
+        Is that a number? Please try again. 
+       </prompt>
+       <reprompt/>
+      </nomatch>
+
+    </field>
+    <filled namelist="guess" mode="all">
+      <prompt>
+        You said <value expr="guess" /> Your brain is enormous.
+      </prompt> 
+      <goto next="#playAgain" />
+    </filled>
+  </form>
+
+  <form id="playAgain">
+    <field name="confirm" slot="confirm">
+      <grammar type="text/gsl">
+      <![CDATA[[
+        [yes]    {  <confirm   "yes"> }
+        [no]     {  <confirm   "no">  }
+        ]]]>
+      </grammar>
+      <prompt bargein="false">
+        Do you want to play again? 
+      </prompt>
+    </field>
+    <filled namelist="confirm" mode="all">
+      <if cond="confirm == 'yes'">
+        <goto next="#guessNumber" />
+      <elseif cond="confirm == 'no'" />
+       <prompt>
+        Thank you! Goodbye!
+       </prompt>
+      </if>
+    </filled>
+  </form> 
+</vxml>
